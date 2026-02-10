@@ -1,6 +1,7 @@
 ### APPIUM project -> Java 
 
-please read the following material for understanding the project.
+How to install and use Appium (using JAVA) on your VScode and windows machine. This is the right place to be. \n
+please read the following material for understanding the project. 
 
 
 # 📱 Appium Android Automation – Complete Setup Guide (Java)
