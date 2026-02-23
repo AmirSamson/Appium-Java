@@ -9,6 +9,7 @@ public class BaseDriver {
 
     AndroidDriver driver ;
     
+    @SuppressWarnings("null")
     public AndroidDriver initAndroidDriver() throws MalformedURLException{
         
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabilities());
@@ -21,9 +22,13 @@ public class BaseDriver {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("appium:automationName","UIAutomator2");
         capabilities.setCapability("appium:platformVersion","16");       
-        capabilities.setCapability("app", System.getProperty("user.dir")+
-        "appium-java\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk");
-        capabilities.setCapability("newCommandTimeout",120);
+        capabilities.setCapability(
+    "appium:app",
+    System.getProperty("user.dir") +
+    "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"   //appium-java\src\main\resources\App\amazon.mShop.android.shopping.apk
+);
+
+        capabilities.setCapability("appium:newCommandTimeout",120);
         return capabilities;
     }
 
