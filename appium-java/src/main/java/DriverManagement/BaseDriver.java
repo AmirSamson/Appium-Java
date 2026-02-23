@@ -26,4 +26,8 @@ public class BaseDriver {
         capabilities.setCapability("newCommandTimeout",120);
         return capabilities;
     }
+
+    public void quitDriver(){
+        driver.quit();
+    }
 }
