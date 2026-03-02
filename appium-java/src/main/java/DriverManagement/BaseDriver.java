@@ -42,6 +42,9 @@ public class BaseDriver {
     public void initAppiumService(){
         appiumService = AppiumDriverLocalService.buildService(
             new AppiumServiceBuilder() 
+
+            // .usingDriverExecutable(new File("/usr/local/bin/node")) //if node is not added to the PATH
+            // .withAppiumJS(new File("usr/local/lib/node_modules/appium/build/lib/main.js")) // if Appium is not added to PATH
             .withLogFile(new File(System.getProperty("user.dir")+"/target/appiumServiceLogs.txt"))
             .withArgument(GeneralServerFlag.LOCAL_TIMEZONE));
     }
