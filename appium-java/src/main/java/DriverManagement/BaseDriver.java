@@ -18,7 +18,8 @@ public class BaseDriver {
 
     @SuppressWarnings("null")
     public AndroidDriver initAndroidDriver() throws MalformedURLException{
-        initAppiumService();
+        // initAppiumService();  we have disabled this line because we are calling this method inside the BaseTest.java file. 
+
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabilities());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
@@ -55,6 +56,12 @@ public class BaseDriver {
     public void quitDriver(){
         driver.quit();
         System.out.println("driver has quit");
+        // appiumService.stop();  we want our Appium server to be stopped after all tests are done and not for each one, so we should define a new method:
+        
+    }
+
+    // now we close the server after suite, using this method:
+    public void quitAppium(){
         appiumService.stop();
         System.out.println("Appium Server has stopped");
     }
