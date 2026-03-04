@@ -43,13 +43,19 @@ public class BaseDriver {
         appiumService = AppiumDriverLocalService.buildService(
             new AppiumServiceBuilder() 
 
-            // .usingDriverExecutable(new File("/usr/local/bin/node")) //if node is not added to the PATH
-            // .withAppiumJS(new File("usr/local/lib/node_modules/appium/build/lib/main.js")) // if Appium is not added to PATH
+            // .usingDriverExecutable(new File("/usr/local/bin/node"))      //if node is not added to the PATH
+            // .withAppiumJS(new File("usr/local/lib/node_modules/appium/build/lib/main.js"))       // if Appium is not added to PATH
             .withLogFile(new File(System.getProperty("user.dir")+"/target/appiumServiceLogs.txt"))
             .withArgument(GeneralServerFlag.LOCAL_TIMEZONE));
+
+        appiumService.start();
+        
     }
 
     public void quitDriver(){
         driver.quit();
+        System.out.println("driver has quit");
+        appiumService.stop();
+        System.out.println("Appium Server has stopped");
     }
 }
