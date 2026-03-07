@@ -34,7 +34,10 @@ public class BaseDriver {
         capabilities.setCapability(
             "appium:app",
             System.getProperty("user.dir") +
-            "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"); //appium-java\src\main\resources\App\amazon.mShop.android.shopping.apk
+            "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"); 
+            
+            // "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"
+            // "appium-java\src\main\resources\App\amazon.mShop.android.shopping.apk"
 
         capabilities.setCapability("appium:newCommandTimeout",120);
         return capabilities;

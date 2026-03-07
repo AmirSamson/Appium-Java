@@ -12,14 +12,14 @@ public class LaunchPage extends BasePage {
     }
 
     By popUpSnackBarId = By.id("com.fedshi.res.demo:id/snackbar_text");
-    By refreshButtonId = By.id("com.fedshi.res.demo:id/snackbar_action");
+    By refreshBtnId = By.id("com.fedshi.res.demo:id/snackbar_action");
 
     public void inspectPopUp(){
         driver.findElement(popUpSnackBarId).click();
     }
 
     public void refreshButton(){
-        driver.findElement(refreshButtonId).click();
+        driver.findElement(refreshBtnId).click();
     }
 
 }

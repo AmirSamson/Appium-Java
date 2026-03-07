@@ -12,7 +12,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class BaseTest extends BaseDriver {
 
-    AndroidDriver driver;
+    protected AndroidDriver driver;
     @BeforeSuite
     public void initSuite(){
         initAppiumService(); // this will initialize the Appium Server for all Tests and we will not see the server to be initialized for each test.

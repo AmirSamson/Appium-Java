@@ -1,5 +1,4 @@
 package Pages;
-import DriverManagement.BaseDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class BasePage {
