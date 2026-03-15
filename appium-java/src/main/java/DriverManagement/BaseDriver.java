@@ -13,15 +13,6 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
-
-import org.openqa.selenium.net.UrlChecker;
-import org.openqa.selenium.net.UrlChecker.TimeoutException; // Import this
-import java.io.File;
-import java.time.Duration;
-
-
 public class BaseDriver {
 
     AndroidDriver driver ;
@@ -29,12 +20,11 @@ public class BaseDriver {
     private File logFile;
 
 
-    @SuppressWarnings("null")
     public AndroidDriver initAndroidDriver() throws MalformedURLException{
         initAppiumService();  // we have disabled this line because we are calling this method inside the BaseTest.java file. 
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabilities());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
         return driver;
     }
 
