@@ -24,7 +24,19 @@ public class BaseDriver {
         initAppiumService();  // we have disabled this line because we are calling this method inside the BaseTest.java file. 
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabilities());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+
+        /*
+        Implicit Wait:
+        
+        means that it will wait on All the Elements (within FindElement() function)
+        however, we cannot use ImplicitWait and ExplicitWait functions, at the same time. 
+        Because it will cause some "random timeouts" in the test. 
+        So we will comment the ImplicitWait for the sake of using ExplicitWait:
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+
+        */
+        
         return driver;
     }
 
