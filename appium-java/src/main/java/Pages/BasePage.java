@@ -20,6 +20,8 @@ public class BasePage {
 
 
     /*
+    Explicit Waits:
+    
     This Method  `waitAndClick(By locator)`  is created to perform the Explicit Wait actions. 
     But first, it will wait for the elements to be visible:
 
