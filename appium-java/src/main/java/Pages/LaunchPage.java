@@ -42,6 +42,5 @@ public class LaunchPage extends BasePage {
     Since we added the Explicit wait in the BasePage.java file, 
     we can now use the Method name alone without needing to use the .Click(); function
     Using the "waitAndClick(By Locator)" function available in the framework. 
-    
     */
 }
