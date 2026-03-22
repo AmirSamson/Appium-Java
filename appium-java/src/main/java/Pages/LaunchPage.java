@@ -7,7 +7,7 @@ public class LaunchPage extends BasePage {
 
     public LaunchPage(AndroidDriver driver) {
         super(driver);
-        // PageFactory.initElements(driver, this);  this is for "WebElement"
+        // PageFactory.initElements(driver, this);     // this is for "WebElement"
     }
 
 
@@ -31,11 +31,17 @@ public class LaunchPage extends BasePage {
     By refreshBtnId = By.id("com.fedshi.res.demo:id/snackbar_action");
 
     public void inspectPopUp(){
-        driver.findElement(popUpSnackBarId).click();
+        waitAndClick(popUpSnackBarId);
     }
 
     public void refreshButton(){
-        driver.findElement(refreshBtnId).click();
+        waitAndClick(refreshBtnId);
     }
 
+    /*
+    Since we added the Explicit wait in the BasePage.java file, 
+    we can now use the Method name alone without needing to use the .Click(); function
+    Using the "waitAndClick(By Locator)" function available in the framework. 
+    
+    */
 }
