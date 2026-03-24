@@ -13,13 +13,13 @@ public class BasePage {
 
     public static final int SHORT_WAIT=60;     // This is our ExplicitWait
 
-    WebDriverWait webDriverWait; // First we defined this instance, here then added it in the Constructor.
+    WebDriverWait webDriverWait;    // First we defined this instance, here then added it in the Constructor.
     
-    //this is our constructor:
+        //this is our constructor:
     public BasePage (AndroidDriver driver){ 
         this.driver=driver;
 
-        // Since we had this line in both of the methods, so we added it here in the constructor of the class:
+            // Since we had this line in both of the methods, so we added it here in the constructor of the class:
         webDriverWait= new WebDriverWait(this.driver, Duration.ofSeconds(SHORT_WAIT)); 
     }
 
@@ -27,20 +27,20 @@ public class BasePage {
     /*
     Explicit Waits:
 
-    This Method  `waitAndClick(By locator)`  is created to perform the Explicit Wait actions. 
-    But first, it will wait for the elements to be visible:
+        This Method  `waitAndClick(By locator)`  is created to perform the Explicit Wait actions. 
+        But first, it will wait for the elements to be visible:
 
-                WebDriverWait webDriverWait= new WebDriverWait(this.driver, Duration.ofSeconds(SHORT_WAIT));
-                webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                    WebDriverWait webDriverWait= new WebDriverWait(this.driver, Duration.ofSeconds(SHORT_WAIT));
+                    webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
-    Then it will wait for them to be clickable:
+        Then it will wait for them to be clickable:
 
-                WebElement element = driver.findElement(locator);
-                webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+                    WebElement element = driver.findElement(locator);
+                    webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
 
-    Then it will click on them:
+        Then it will click on them:
 
-                element.click();
+                    element.click();
 
     */
 
@@ -53,7 +53,7 @@ public class BasePage {
     }
 
     /*
-    For checking if something is Displayed, we can also use the same way:
+        For checking if something is Displayed, we can also use the same way:
     */
 
     public boolean isDisplayed(By locator){
