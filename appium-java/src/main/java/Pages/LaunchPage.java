@@ -2,7 +2,6 @@ package Pages;
 import org.openqa.selenium.By;
 import io.appium.java_client.android.AndroidDriver;
 
-
 public class LaunchPage extends BasePage {
 
     public LaunchPage(AndroidDriver driver) {
