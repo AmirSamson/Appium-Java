@@ -11,7 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 public class BasePage {
     AndroidDriver driver;
 
-    public static final int SHORT_WAIT=60;     // This is our ExplicitWait
+    public static final int SHORT_WAIT=90;     // This is our ExplicitWait
 
     WebDriverWait webDriverWait;    // First we defined this instance, here then added it in the Constructor.
     
