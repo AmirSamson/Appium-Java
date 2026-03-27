@@ -54,7 +54,7 @@ public class BaseDriver {
             //   "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"
             //   "\\src\\main\\resources\\App\\FEDSHI-Demo-Release-1.10.0.apk"
 
-        capabilities.setCapability("appium:newCommandTimeout",120);
+        capabilities.setCapability("appium:newCommandTimeout",800);
         return capabilities;
     }
 
@@ -76,7 +76,7 @@ public class BaseDriver {
                         .withAppiumJS(appiumJsFile)
                         .withIPAddress("127.0.0.1")
                         .usingPort(4723)
-                        .withTimeout(Duration.ofSeconds(900))
+                        .withTimeout(Duration.ofSeconds(900)) // Duration of time for waiting for the Appium Server to initiate. 
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "debug")
                         .withLogFile(logFile); 
                 
