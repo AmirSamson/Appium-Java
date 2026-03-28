@@ -301,7 +301,7 @@ appium-doctor --android
 
 ---
 
-## How to get AppActivity and AppPackage of your installed app on Emulator/Real Device:
+## How to get appActivity and appPackage of your installed app on Emulator/Real Device:
 
 1. Start emulator/Connect your real device
 2. Go to CMD
