@@ -301,6 +301,20 @@ appium-doctor --android
 
 ---
 
+## How to get AppActivity and AppPackage of your installed app on Emulator/Real Device:
+
+1. Start emulator/Connect your real device
+2. Go to CMD
+3. Run this command on CMD/WindowsPowerShell (on Windows): `adb shell dumpsys window | findstr /R "mCurrentFocus"`
+    - For MacOS use this command: `adb shell dumpsys window | grep -E 'myCurrentFocus'`
+4. Then on the Emulator/Real Device, open the app you want to Automate.
+5. Run the command on CMD/WindowsPowerShell again, and whatever the response is, the first part is **appPackage**, and whatever comes after the "/" is the **appActivity**
+  i.e: when I run this command and open the Dialer app, I get this response:  mCurrentFocus=Window{69becb9 u0 com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}
+    the `com.google.android.dialer` is the **appPackage**
+    the `com.google.android.dialer.extensions.GoogleDialtactsActivity` is the **appActivity**
+
+---
+
 ## ✅ Final Validation Checklist
 
 * [ ] Java installed & JAVA_HOME set
