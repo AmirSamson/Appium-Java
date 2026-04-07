@@ -54,7 +54,7 @@ public class BaseDriver {
             //   "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"
             //   "\\src\\main\\resources\\App\\FEDSHI-Demo-Release-1.10.0.apk"
 
-        capabilities.setCapability("appium:newCommandTimeout",800);
+        capabilities.setCapability("appium:newCommandTimeout", 800);
         return capabilities;
     }
 
