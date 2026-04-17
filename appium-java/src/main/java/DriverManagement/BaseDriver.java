@@ -1,11 +1,17 @@
 package DriverManagement;
 import java.net.URL;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
@@ -15,44 +21,85 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BaseDriver {
 
-    AndroidDriver driver ;
-    private AppiumDriverLocalService appiumService;
+    AppiumDriver driver;
+    AppiumDriverLocalService appiumService;
+    static String APPIUM_SERVER="http://127.0.0.1:4723";
+    static String ANDROID="android";
+    static String IOS="ios";
+    protected static Properties prop = new Properties();
+    
     private File logFile;
 
-
-    public AndroidDriver initAndroidDriver() throws MalformedURLException{
-        initAppiumService();  // we have disabled this line because we are calling this method inside the BaseTest.java file. 
-
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabilities());
-
-        /*
-        Implicit Wait:
-        
-        means that it will wait on All the Elements (within FindElement() function)
-        however, we cannot use ImplicitWait and ExplicitWait functions, at the same time. 
-        Because it will cause some "random timeouts" in the test. 
-        So we will comment the ImplicitWait for the sake of using ExplicitWait:
-
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-
-        */
-        
+    public AppiumDriver initDriver() throws Exception{
+        loadPropertyFile();
+        if (prop.get("platform").equals(ANDROID)){
+            driver = new AndroidDriver(new URL(APPIUM_SERVER), getDesiredCapabilities(ANDROID));
+        }
+        else if(prop.get("platform").equals(IOS)){
+            driver = new IOSDriver(new URL(APPIUM_SERVER), getDesiredCapabilities(IOS));
+        }
+         else {
+            throw new IllegalArgumentException("Platform name: "+ prop.get("platform")+" is not a valid!");
+        }
         return driver;
+
     }
 
-    private static DesiredCapabilities getDesiredCapabilities(){
+    public void loadPropertyFile() throws IOException{
+        InputStream input = new FileInputStream(System.getProperty("user.dir") +
+            "\\src\\main\\resources\\application.properties");                  // this will load the file to know which Platform we are testing.    
+        prop.load(input);
+    }
+
+    public Properties getApplicatioProperties(){
+        return prop;
+    }
+
+
+    // public AndroidDriver initAndroidDriver() throws MalformedURLException{
+    //     initAppiumService();  // we have disabled this line because we are calling this method inside the BaseTest.java file. 
+
+    //     driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), getDesiredCapabilities());
+
+    //     /*
+    //     Implicit Wait:
+        
+    //     means that it will wait on All the Elements (within FindElement() function)
+    //     however, we cannot use ImplicitWait and ExplicitWait functions, at the same time. 
+    //     Because it will cause some "random timeouts" in the test. 
+    //     So we will comment the ImplicitWait for the sake of using ExplicitWait:
+
+    //         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+
+    //     */
+        
+    //     return driver;
+    // }
+
+    private DesiredCapabilities getDesiredCapabilities(String Platform){
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformVersion", prop.getProperty("platformVersion"));
+
+        if (Platform.equals(ANDROID)) {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("appium:automationName","UIAutomator2");
         capabilities.setCapability("appium:platformVersion","16");     
-
-        capabilities.setCapability(
-            "appium:app",
-            System.getProperty("user.dir") +
-            "\\src\\main\\resources\\App\\FEDSHI-Demo-Release-1.10.0.apk"); 
-            
+        capabilities.setCapability("appium:app", System.getProperty("user.dir") + "\\src\\main\\resources\\App\\FEDSHI-Demo-Release-1.10.0.apk"); 
             //   "\\src\\main\\resources\\App\\amazon.mShop.android.shopping.apk"
             //   "\\src\\main\\resources\\App\\FEDSHI-Demo-Release-1.10.0.apk"
+        }
+
+        else if (Platform.equals(IOS)){
+            capabilities.setCapability("platformName","iOS");
+            capabilities.setCapability("appium:automationName","xcuitest");
+            capabilities.setCapability("appium:udid","00008030-000128680A04C02E");     
+            capabilities.setCapability("appium:bundleId", "com.amazon.Amazon"); // we need to get the bundleId for using the iOS app.
+        }
+
+        else {
+            throw new IllegalArgumentException("Platform name: "+ prop.get("platform")+" is not a valid!");
+        }
 
         capabilities.setCapability("appium:newCommandTimeout", 800);
         return capabilities;
