@@ -1,14 +1,16 @@
 package Pages;
 import org.openqa.selenium.By;
+
+import Pages.baseclasses.BasePage;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class LaunchPage extends BasePage {
 
-    public LaunchPage(AndroidDriver driver) {
+    public LaunchPage(AppiumDriver driver) {
         super(driver);
         // PageFactory.initElements(driver, this);     // this is for "WebElement"
     }
-
 
     /**
      * we can also use the WebElement to find the elements and use them.
@@ -24,7 +26,6 @@ public class LaunchPage extends BasePage {
         }
         
     */
-
 
     By popUpSnackBarId = By.id("com.fedshi.res.demo:id/snackbar_text");
     By refreshBtnId = By.id("com.fedshi.res.demo:id/snackbar_action");
