@@ -8,5 +8,10 @@ public class IOSHomePage extends HomePage {
     public IOSHomePage(AppiumDriver driver){
         super(driver);
     }
+
+    
+    public boolean isNotificationBarDisplayed() {
+        return isDisplayed(null);
+    }
     
 }
